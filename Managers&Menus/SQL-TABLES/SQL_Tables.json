@@ -1,0 +1,61 @@
+{
+    /*Editor: Ugur Bektas
+    More SQl-Tables exist but i did not use them.
+
+    CREATE TABLE [dbo].[User] 
+    (
+    [userId]    INT          IDENTITY (1, 1) NOT NULL,
+    [username]  VARCHAR (50) NOT NULL,
+    [password]  VARCHAR (50) NOT NULL,
+    [lastname]  VARCHAR (50) NULL,
+    [firstname] VARCHAR (50) NULL,
+    PRIMARY KEY CLUSTERED ([userId] ASC)
+    );
+    CREATE TABLE [dbo].[Groups] 
+    (
+    [groupId]     INT          IDENTITY (1, 1) NOT NULL,
+    [groupName]   VARCHAR (50) NOT NULL,
+    [createdDate] DATETIME     DEFAULT (getdate()) NULL,
+    PRIMARY KEY CLUSTERED ([groupId] ASC)
+    );
+    CREATE TABLE [dbo].[UserGroups] 
+    (
+    [userId]      INT      NOT NULL,
+    [groupId]     INT      NOT NULL,
+    [createdDate] DATETIME DEFAULT (getdate()) NULL,
+    PRIMARY KEY CLUSTERED ([userId] ASC, [groupId] ASC),
+    CONSTRAINT [FK_UserGroups_Groups] FOREIGN KEY ([groupId]) REFERENCES [dbo].[Groups] ([groupId]),
+    CONSTRAINT [FK_UserGroups_User] FOREIGN KEY ([userId]) REFERENCES [dbo].[User] ([userId])
+    );
+    CREATE TABLE [dbo].[Projects] 
+    (
+    [projectId]   INT          IDENTITY (1, 1) NOT NULL,
+    [projectName] VARCHAR (50) NOT NULL,
+    [groupId]     INT          NOT NULL,
+    [createdDate] DATETIME     DEFAULT (getdate()) NULL,
+    [updatedDate] DATETIME     DEFAULT (getdate()) NULL,
+    PRIMARY KEY CLUSTERED ([projectId] ASC),
+    CONSTRAINT [FK_Projects_Groups] FOREIGN KEY ([groupId]) REFERENCES [dbo].[Groups] ([groupId])
+    );
+    CREATE TABLE [dbo].[TemporaryUserList] 
+    (
+    [userId]   INT          NOT NULL,
+    [userName] VARCHAR (50) NOT NULL,
+    PRIMARY KEY CLUSTERED ([userId] ASC),
+    CONSTRAINT [FK_TemporaryUserList_User] FOREIGN KEY ([userId]) REFERENCES [dbo].[User] ([userId])
+    );
+    CREATE TABLE [dbo].[UploadedCodeFiles] 
+    (
+    [fileIDUploadedCodeFiles]       INT             IDENTITY (1, 1) NOT NULL,
+    [fileDataUploadedCodeFiles]     VARBINARY (MAX) NOT NULL,
+    [fileNameUploadedCodeFiles]     NVARCHAR (MAX)   NOT NULL,
+	[uploadedDate] DATETIME     DEFAULT (getdate()) NOT NULL,
+    [userId] INT NOT NULL, 
+    [fileSize] INT NULL, 
+    PRIMARY KEY CLUSTERED ([fileIDUploadedCodeFiles] ASC),
+    CONSTRAINT [FK_UploadedCodeFiles_User] FOREIGN KEY ([userId]) REFERENCES [dbo].[User] ([userId])
+   );
+
+
+ */
+}
